@@ -1,0 +1,122 @@
+#!/usr/bin/python3
+from tkinter import *
+from os import system
+root = Tk()
+fgrwfs = IntVar()
+grspV = IntVar()
+bigsmall = ""
+fastslow = ""
+mulPlayer = ""
+root.geometry("900x500")
+root.configure(bg='black')
+def bigN(arg=None):
+  global root
+  global bigsmall
+  bigsmall = "bigger"
+  for x in root.winfo_children():
+    x.destroy()
+  nextCh()
+def smallN(arg=None):
+  global root
+  global bigsmall
+  bigsmall = "smaller"
+  for x in root.winfo_children():
+    x.destroy()
+  nextCh()
+def speedUp(arg=None):
+  global root
+  global fastslow
+  fastslow = "faster"
+  mulPlay()
+def slowDown(arg=None):
+  global root
+  global fastslow
+  global grspV
+  if grspV != 3 and grspV != 2:
+    grspV = 9
+  fastslow = "slower"
+  mulPlay()
+def play1(arg=None):
+  global root
+  global mulPlayer
+  global grspV
+  if grspV != 3 and grspV != 2:
+    grspV = 9
+  mulPlayer = "muln"
+  root.destroy()
+def play2(arg=None):
+  global root
+  global mulPlayer
+  mulPlayer = "muly"
+  root.destroy()
+def mulPlay():
+  global root
+  global mulPlayV
+  for x in root.winfo_children():
+    x.destroy()
+  mulLab = Label(root, text="2 Players?", font=("Arial", 20), bg='black', fg='white')
+  mulB1 = Button(root, text="1 Player", font=("Arial", 20), command=play1, bg='black', fg='white')
+  mulB2 = Button(root, text="2 Player", font=("Arial", 20), command=play2, bg='black', fg='white')
+  mulLab.pack(anchor=W)
+  mulB1.pack(anchor=W)
+  mulB2.pack(anchor=W)
+def nextCh():
+  global root
+  for x in root.winfo_children():
+    x.destroy()
+  fsb0 = Button(root, text="Keep Bug at Constant Speed", font=("Arial", 20), command=mulPlay, bg='black', fg='white')
+  fsb1 = Button(root, text="Speed Up Bug", font=("Arial", 20), command=speedUp, bg='black', fg='white')
+  fsb2 = Button(root, text="Slow Down Bug", font=("Arial", 20), command=slowDown, fg='white', bg='black')
+  fsb0.pack(anchor=W)
+  fsb1.pack(anchor=W)
+  fsb2.pack(anchor=W)
+  grspR = Radiobutton(root, text="Change Bug Speed Quickly", font=("Arial", 20), variable=grspV, value=3, fg='black', bg='white')
+  grspR2 = Radiobutton(root, text="Change Bug Speed Slowly", font=("Arial", 20), variable=grspV, value=2, fg='black', bg='white')
+  grspR.pack(anchor=W)
+  grspR2.pack(anchor=W)
+"""  global bigsmall
+  if bigsmall.get() == 1:
+    bigsmall = "bigger"
+  elif bigsmall == 2:
+    bigsmall = "smaller"
+"""
+root.title("Settings")
+#bsp = PanedWindow(root, orient=VERTICAL)
+bsb0 = Button(root, text="Keep Bug Size", font=("Arial", 20), command=nextCh, bg='black', fg='white')
+bsb1 = Button(root, text="Grow Bug", font=("Arial", 20), command=bigN, bg='black', fg='white')
+bsb0.pack(anchor=W)
+bsb1.pack(anchor=W)
+bsb2 = Button(root, text="Shrink Bug", font=("Arial", 20), command=smallN, bg='black', fg='white')
+bsb2.pack(anchor=W)
+fgrw = Radiobutton(text="Change Bug Size Quickly", variable=fgrwfs, value=1, font=("Arial", 20), fg='black', bg='white')
+fgrw2 = Radiobutton(text="Change Bug Size Slowly", variable=fgrwfs, value=0, font=("Arial", 20), fg='black', bg='white')
+fgrw.pack(anchor=W)
+fgrw2.pack(anchor=W)
+#bsp.pack()
+#bigsmall = 0
+root.mainloop()
+print("fgrwfs: ", fgrwfs.get())
+print(bigsmall)
+print(fastslow)
+#print(str(grspV.get()))
+print("\n\n\n\n\n\n\n\n\n\n\n\n\n")
+"""
+if str(bigsmall.get()) == "1":
+  bigsmall = "bigger"
+elif str(bigsmall.get()) == "2":
+  bigsmall = "smaller"
+else:
+  bigsmall = ""
+if str(fastslow.get()) == "1":
+  fastslow = "faster"
+elif str(fastslow.get()) == "2":
+  fastslow = "slower"
+else:
+  fastslow = ""
+"""
+try:
+  print("./main {} {} {} {} {}".format(bigsmall, fastslow, str(fgrwfs.get()), str(grspV.get()), mulPlayer))
+  system("./main {} {} {} {} {}".format(bigsmall, fastslow, str(fgrwfs.get()), str(grspV.get()), mulPlayer))
+except:
+  print("./snnnn {} {} {} {} {}".format(bigsmall, fastslow, str(fgrwfs.get()), grspV, mulPlayer))
+  system("./snnnn {} {} {} {} {}".format(bigsmall, fastslow, str(fgrwfs.get()), grspV, mulPlayer))
